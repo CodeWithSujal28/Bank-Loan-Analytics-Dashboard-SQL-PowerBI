@@ -1,154 +1,458 @@
-# 🏦 Bank Loan Analytics Dashboard | SQL + Power BI
+# 🏦 Bank Loan Analytics | SQL + Power BI
 
-An interactive **Bank Loan Analytics Dashboard built using Microsoft Power BI and Excel** to analyze loan applications, funding, repayments, loan status, borrower risk indicators, and portfolio trends.
+An end-to-end **Bank Loan Analytics project using PostgreSQL and Microsoft Power BI** to analyze loan applications, portfolio performance, repayment patterns, credit risk, and borrower segments.
 
-The project provides a clear view of **loan portfolio performance and lending activities** through interactive KPIs, charts, filters, and navigation.
-
----
-
-## 📊 Project Overview
-
-The dashboard analyzes **38,576 loan applications** and focuses on:
-
-- Loan application trends
-- Funded and received amounts
-- Good vs Bad loan performance
-- Interest rate and DTI analysis
-- Loan purpose and term analysis
-- Home ownership distribution
-- Regional loan distribution
-- Loan status performance
-
-The report contains two interactive pages:
-
-- **Summary**
-- **Overview**
+The project combines **SQL-based exploratory and business analysis** with an interactive **Power BI dashboard** to transform raw loan data into actionable business insights.
 
 ---
 
-## 🛠️ Tools & Technologies
+## 📌 Project Overview
 
-- **Power BI** – Dashboard development & visualization
-- **Power Query** – Data cleaning and transformation
-- **DAX** – Measures and KPI calculations
-- **Excel** – Data source
-- **Data Modeling** – Structuring data for analysis
+The dataset contains **38,576 loan applications** with information about:
 
----
+* Loan amount and repayments
+* Loan status
+* Loan grade and sub-grade
+* Interest rate
+* Debt-to-Income (DTI) ratio
+* Loan purpose
+* Loan term
+* Employment information
+* Home ownership
+* Verification status
+* Borrower state
+* Application date
 
-## 📌 Key KPIs
+The project was developed in two major layers:
 
-| KPI | Value |
-|---|---:|
-| Total Loan Applications | **38,576** |
-| Total Funded Amount | **₹435.8M** |
-| Total Amount Received | **₹473.1M** |
-| Average Interest Rate | **12.05%** |
-| Average DTI Ratio | **13.33%** |
+### 🔹 SQL Analysis
 
----
+PostgreSQL was used to:
 
-## 🟢 Good vs 🔴 Bad Loans
+* Validate the dataset
+* Check duplicates and missing values
+* Explore portfolio structure
+* Analyze loan status and loan grades
+* Calculate loan and repayment metrics
+* Analyze monthly and regional trends
+* Measure bad-loan rates
+* Compare risk across grades, purposes, terms and verification status
+* Apply CTEs and window functions for advanced analysis
 
-### 🟢 Good Loans
+### 🔹 Power BI Dashboard
 
-Includes **Fully Paid + Current** loans.
-
-- Applications: **33,243**
-- Share: **86.18%**
-- Funded Amount: **₹370.2M**
-- Amount Received: **₹435.8M**
-
-### 🔴 Bad Loans
-
-Includes **Charged Off** loans.
-
-- Applications: **5,333**
-- Share: **13.82%**
-- Funded Amount: **₹65.5M**
-- Amount Received: **₹37.3M**
-
-This analysis helps evaluate the overall health of the loan portfolio and identify potential credit-risk areas.
+Power BI was used to convert the analysis into an interactive management dashboard with KPIs, filters, charts, navigation and portfolio-level insights.
 
 ---
 
-# 📄 Dashboard Pages
+# 🗂️ Project Workflow
 
-## 1. Summary
+```text
+Raw Loan Dataset
+       ↓
+Data Validation
+       ↓
+PostgreSQL
+       ↓
+EDA & Business Analysis
+       ↓
+Risk & Portfolio Analysis
+       ↓
+Power BI Data Modeling
+       ↓
+DAX Measures
+       ↓
+Interactive Dashboard
+       ↓
+Business Insights & Recommendations
+```
+
+---
+
+# 🛠️ Tools & Technologies
+
+| Tool            | Purpose                                         |
+| --------------- | ----------------------------------------------- |
+| **PostgreSQL**  | Data analysis & business queries                |
+| **SQL**         | EDA, aggregations, segmentation & risk analysis |
+| **Power BI**    | Dashboard development & visualization           |
+| **Power Query** | Data transformation                             |
+| **DAX**         | KPI and calculated measures                     |
+| **Excel / CSV** | Source dataset                                  |
+| **GitHub**      | Project documentation & version control         |
+
+---
+
+# 📊 Dataset
+
+**Total Records:** 38,576
+**Total Columns:** 23
+
+The dataset contains loan-level information covering applications, borrower attributes, loan characteristics, repayment information and loan status.
+
+### Important analytical fields
+
+```text
+ISSUE_DATE
+LOAN_AMOUNT
+TOTAL_PAYMENT
+LOAN_STATUS
+GRADE
+SUB_GRADE
+PURPOSE
+TERM
+INT_RATE
+DTI
+HOME_OWNERSHIP
+VERIFICATION_STATUS
+ADDRESS_STATE
+ANNUAL_INCOME
+EMP_LENGTH
+```
+
+---
+
+# 🔍 Part 1 — Exploratory Data Analysis
+
+The first stage of the project focused on understanding and validating the dataset.
+
+### Data Quality Checks
+
+* Total record count
+* Column structure
+* Duplicate loan IDs
+* Duplicate member IDs
+* Missing-value analysis
+* Date range validation
+* Loan amount statistics
+* Income statistics
+* Interest-rate statistics
+* DTI statistics
+
+### Portfolio Exploration
+
+The SQL analysis also examined:
+
+* Loan status distribution
+* Loan purpose distribution
+* Grade and sub-grade distribution
+* Home ownership
+* Verification status
+* Loan term
+* State-wise loan distribution
+* Monthly application trends
+* Monthly funded amount
+* Charged-off loans
+* Good vs Bad vs Current loans
+
+---
+
+# 📈 Part 2 — Business & Risk Analysis
+
+After understanding the dataset, the analysis moved from descriptive EDA to business-focused questions.
+
+### Key business questions included:
+
+* What is the total number of loan applications?
+* What is the total funded amount?
+* How much payment is recorded in the portfolio?
+* Which grades have the highest number of charged-off loans?
+* Which states have the highest loan exposure?
+* Which states have the highest charged-off amount?
+* Which grades have the highest average interest rate?
+* How has the portfolio changed month by month?
+* What is the average DTI across loan grades?
+* Which grades have the highest charged-off amount?
+* What percentage of loans are Good, Bad and Current?
+* Which grades have the highest bad-loan rate?
+* Which loan purposes have the highest bad-loan rate?
+* Does loan term affect bad-loan rate?
+* Does verification status affect bad-loan rate?
+
+---
+
+# 📊 Key Portfolio Metrics
+
+| Metric                |        Value |
+| --------------------- | -----------: |
+| Loan Applications     |   **38,576** |
+| Total Funded Amount   | **₹435.76M** |
+| Total Payment         | **₹473.07M** |
+| Average Interest Rate |   **12.05%** |
+| Average DTI           |   **13.33%** |
+| Good Loan Share       |   **86.18%** |
+| Bad Loan Share        |   **13.82%** |
+
+> **Note:** Total payment is a portfolio-level recorded payment figure. The difference between total payment and total funded amount should not be interpreted as profit, because the dataset does not provide a complete accounting of lending revenue, costs, recoveries, or losses.
+
+---
+
+# 📊 Power BI Dashboard
+
+The Power BI report contains two primary pages.
+
+## 1️⃣ Summary
 
 The Summary page provides a high-level view of portfolio performance.
 
+### KPIs
+
+* Total Loan Applications
+* Total Funded Amount
+* Total Amount Received
+* Average Interest Rate
+* Average DTI
+* Good Loan Applications
+* Bad Loan Applications
+
+### Visual Analysis
+
+* Funded Amount vs Payment by Loan Status
+* Loan Applications by Status
+* Average Interest Rate by Loan Status
+* Average DTI by Loan Status
+* Good vs Bad Loan distribution
+
+---
+
+# 2️⃣ Overview
+
+The Overview page provides deeper portfolio segmentation.
+
 ### Visuals
 
-- 📊 Good Loan Applications — Donut Chart
-- 📊 Bad Loan Applications — Donut Chart
-- 💰 Funded Amount vs Repayment by Loan Status
-- 📈 Loan Applications by Status
-- 📊 Average Interest Rate by Loan Status
-- 📉 Average DTI Ratio by Loan Status
+* 📈 Monthly Loan Applications
+* 🗺️ Regional / State Analysis
+* 🍩 Loan Term Distribution
+* 🏠 Home Ownership Analysis
+* 🌳 Loan Purpose Breakdown
+* Grade Analysis
+
+### Interactive Controls
+
+* Purpose Filter
+* Grade Filter
+* Reset Filters
+* Summary ↔ Overview Navigation
+* Interactive cross-filtering
 
 ---
 
-## 2. Overview
+# 🔎 Key Analytical Findings
 
-The Overview page provides detailed analysis across different loan dimensions.
+### 1. Loan grade is an important risk dimension
 
-### Visuals
+The observed bad-loan rate varies across loan grades, with risk increasing across the lower-grade segments.
 
-- 📈 **Monthly Loan Applications** — Line Chart
-- 🗺️ **Loan Applications by State** — Filled Map
-- 🍩 **Loan Applications by Term** — Donut Chart
-- 🏠 **Loan Applications by Home Ownership** — Bar Chart
-- 🌳 **Loan Applications by Purpose** — Treemap
+This makes **grade-level monitoring** useful when evaluating portfolio quality.
 
 ---
 
-## 🎛️ Interactive Features
+### 2. Portfolio exposure is geographically concentrated
 
-The dashboard includes:
+Some states account for significantly more funded loan amount than others.
 
-- **Purpose Filter**
-- **Grade Filter**
-- **Reset Filters Button**
-- **Summary ↔ Overview Navigation**
-- Interactive cross-filtering between visuals
+Therefore, state-level analysis can help identify where the largest portfolio exposures are located.
 
 ---
 
-## 💡 Key Insights
+### 3. Loan purpose shows different risk levels
 
-- **86.18%** of applications are classified as Good Loans.
-- **13.82%** of applications are classified as Bad Loans.
-- Total funded amount is **₹435.8M**, while total amount received is **₹473.1M**.
-- Loan applications show an overall increasing trend throughout the year.
-- **36-month loans** are more common than 60-month loans.
-- **RENT** is the largest home-ownership category.
-- **Debt Consolidation** is the largest loan purpose.
+Bad-loan rates vary across loan purposes.
+
+Large purpose segments can therefore be monitored separately instead of evaluating the entire portfolio using one overall risk percentage.
 
 ---
 
-## 📈 Business Value
+### 4. Loan term is another useful risk dimension
 
-This dashboard helps stakeholders:
+The observed bad-loan rate differs between 36-month and 60-month loans.
 
-- 📊 Monitor lending performance
-- 💰 Track loan portfolio health
-- 🔄 Analyze repayment behavior
-- ⚠️ Identify bad-loan exposure
-- 👥 Understand borrower characteristics
-- 📈 Analyze loan demand and trends
-- 🎯 Support data-driven lending decisions
+This makes loan term an important dimension for portfolio monitoring.
 
 ---
 
-## 👨‍💻 Author
+### 5. Portfolio volume changes over time
 
-### Sujal Mondal
-
-🔗 **GitHub:** [CodeWithSujal28](https://github.com/CodeWithSujal28)
-
-🔗 **LinkedIn:** [Sujal Mondal](https://www.linkedin.com/in/sujal-mondal/)
+Monthly analysis helps identify changes in application volume and funded amount, allowing stakeholders to monitor portfolio growth and changes in lending activity.
 
 ---
 
-## ⭐ If you found this project useful, consider **starring the repository!**
+# 💼 Business Value
+
+The project demonstrates how raw lending data can be transformed into information that can support business monitoring.
+
+### A lending team could use the dashboard to:
+
+* Monitor overall portfolio health
+* Track funded and payment amounts
+* Identify charged-off exposure
+* Compare risk across loan grades
+* Monitor geographic concentration
+* Analyze loan-purpose performance
+* Compare loan terms
+* Track monthly lending activity
+* Investigate borrower segments
+* Identify areas requiring deeper risk analysis
+
+---
+
+# 💡 Business Recommendations
+
+Based on the analysis, the following improvements can make the lending analytics process more effective:
+
+### 1. Monitor Risk × Exposure
+
+Instead of looking only at bad-loan percentage, monitor:
+
+**Bad-loan rate + Funded Amount + Charged-off Amount**
+
+A segment with both high exposure and high bad-loan rate deserves closer investigation.
+
+---
+
+### 2. Create a Dedicated Risk Dashboard
+
+A future Power BI page could track:
+
+* Bad-loan rate
+* Charged-off amount
+* Average DTI
+* Average interest rate
+* Loan grade
+* Loan purpose
+* Loan term
+* State
+
+This would give risk teams a focused portfolio-monitoring view.
+
+---
+
+### 3. Investigate High-Risk Loan Purposes
+
+Loan purposes with higher observed bad-loan rates can be investigated further by combining:
+
+```text
+Purpose
+↓
+Grade
+↓
+Income
+↓
+DTI
+↓
+Term
+↓
+State
+```
+
+This can help identify whether the observed risk is concentrated within a specific borrower segment.
+
+---
+
+### 4. Monitor Geographic Concentration
+
+Track funded amount and charged-off amount by state.
+
+This can help management understand where portfolio exposure is concentrated and where additional analysis may be required.
+
+---
+
+### 5. Add Monthly Risk Monitoring
+
+Instead of reviewing the dashboard only as a static report, track monthly:
+
+* Applications
+* Funded amount
+* Payment amount
+* Bad-loan rate
+* Charged-off amount
+
+This would turn the dashboard into a repeatable portfolio-monitoring tool.
+
+---
+
+### 6. Add Drill-Through Analysis
+
+A future version can allow users to select:
+
+**Grade → Purpose → State → Loan Details**
+
+This would make investigation of unusual segments much easier.
+
+---
+
+# 🎯 Real-World Analytics Approach
+
+The main objective of this project was not simply to create charts.
+
+The workflow follows a practical analytics process:
+
+```text
+Validate the data
+      ↓
+Understand the portfolio
+      ↓
+Ask business questions
+      ↓
+Measure risk
+      ↓
+Identify important segments
+      ↓
+Visualize findings
+      ↓
+Translate findings into actions
+```
+
+This demonstrates the complete role of a data analyst — from **raw data to business insight**.
+
+---
+
+# 📚 Skills Demonstrated
+
+### SQL
+
+* SELECT
+* WHERE
+* GROUP BY
+* ORDER BY
+* CASE
+* Aggregate Functions
+* Subqueries
+* Date Functions
+* Business KPI calculations
+
+### Power BI
+
+* Power Query
+* Data transformation
+* Data modeling
+* DAX
+* KPI cards
+* Slicers
+* Interactive charts
+* Drill-through concepts
+* Page navigation
+* Dashboard design
+
+---
+
+# 👨‍💻 Author
+
+## Sujal Mondal
+
+**Data Analyst | SQL | Python | Power BI | Excel**
+
+🔗 GitHub:
+https://github.com/CodeWithSujal28
+
+🔗 LinkedIn:
+https://www.linkedin.com/in/sujal-mondal/
+
+---
+
+## ⭐ Project Highlight
+
+> **SQL finds the patterns. Power BI makes them visible. Business analysis turns those patterns into decisions.**
+
+If you find this project useful, consider ⭐ **starring the repository**.
