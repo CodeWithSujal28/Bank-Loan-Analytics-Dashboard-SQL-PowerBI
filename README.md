@@ -1,4 +1,4 @@
-# 🏦 Bank Loan Analytics Dashboard | Power BI
+# 🏦 Bank Loan Analytics Dashboard | SQL + Power BI
 
 An interactive **Bank Loan Analytics Dashboard built using Microsoft Power BI and Excel** to analyze loan applications, funding, repayments, loan status, borrower risk indicators, and portfolio trends.
 
